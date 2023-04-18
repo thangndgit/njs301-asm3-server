@@ -11,18 +11,18 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 // Import middleware
-const mwError = require("./middlewares/error");
+const mwError = require("../middlewares/error");
 
 // Import socket handlers
-const registerRoomHandlers = require("./handlers/room");
+const registerRoomHandlers = require("../handlers/room");
 
 // Import routes
-const rteUser = require("./routes/user");
-const rteOrder = require("./routes/order");
-const rteProduct = require("./routes/product");
-const rteSession = require("./routes/session");
-const rteRoom = require("./routes/room");
-const rteMail = require("./routes/mail");
+const rteUser = require("../routes/user");
+const rteOrder = require("../routes/order");
+const rteProduct = require("../routes/product");
+const rteSession = require("../routes/session");
+const rteRoom = require("../routes/room");
+const rteMail = require("../routes/mail");
 
 // Create server
 const app = express();
