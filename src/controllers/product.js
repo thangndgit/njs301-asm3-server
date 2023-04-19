@@ -144,7 +144,7 @@ exports.deleteById = async (req, res, next) => {
     // Delete images if it is in storage
     imgs.forEach((img) => {
       if (img.includes(baseUrl)) {
-        const imgDir = img.replace(baseUrl, rootDir).replaceAll("/", "\\");
+        const imgDir = img.replace(baseUrl, rootDir);
         deleteFile(imgDir);
       }
     });
