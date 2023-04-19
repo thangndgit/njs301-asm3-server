@@ -21,7 +21,7 @@ exports.create = async (req, res, next) => {
     const baseUrl = `${req.protocol}://${req.get("host")}`;
 
     // Create imgs from files
-    const imgs = req.files.map((file) => baseUrl + "/" + file.path.replaceAll("\\", "/"));
+    const imgs = req.files.map((file) => baseUrl + "/" + file.path);
 
     // Create product
     await Product.create({ ...reqData, imgs });
