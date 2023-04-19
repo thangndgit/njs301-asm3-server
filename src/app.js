@@ -65,7 +65,7 @@ app.use("/api/mails", rteMail);
 app.get("/uploads/:imgPath", (req, res) => {
   const imgPath = req.params.imgPath;
   const rootDir = path.resolve(process.cwd());
-  res.sendFile(rootDir + "\\uploads\\" + imgPath);
+  res.sendFile(rootDir + "/uploads/" + imgPath);
 });
 
 // Use error middleware
