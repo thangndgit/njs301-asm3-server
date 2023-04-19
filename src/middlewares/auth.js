@@ -10,7 +10,7 @@ exports.requireLogin = (req, res, next) => {
 
 exports.requireRole = (...roles) => {
   return (req, res, next) => {
-    if (!roles.length || roles.includes(req.session.user.role)) return next();
+    if (!roles.length || (req.session && req.session.user && roles.includes(req.session.user.role))) return next();
     else {
       let msg;
       if (roles.length === 1) msg = `Unauthorized. You must be ${roles[0]} to use this feature`;
