@@ -46,10 +46,18 @@ app.use(
   session({
     resave: true,
     saveUninitialized: true,
+    proxy: true,
+    name: "njs301-asm3-server",
     secret: "matitmui",
-    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "none",
+      secure: true,
+      httpOnly: false,
+    },
   })
 );
+app.enable("trust proxy");
 app.use(passport.initialize());
 app.use(passport.session());
 
