@@ -41,23 +41,34 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Session config
+const sessionConfig = {
+  resave: true,
+  saveUninitialized: true,
+  proxy: true,
+  name: "njs301-asm3-server",
+  secret: "matitmui",
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+    sameSite: "none",
+    secure: true,
+    httpOnly: true,
+  },
+};
+
+// Check if in production environment
+if (process.env.NODE_ENV === "production") {
+  // Use secure session configuration for production environment
+  sessionConfig.cookie.secure = true;
+  app.set("trust proxy", 1);
+} else {
+  // Use non-secure session configuration for development environment
+  sessionConfig.cookie.secure = false;
+  app.set("trust proxy", 0);
+}
+
 // Setup session
-app.use(
-  session({
-    resave: true,
-    saveUninitialized: true,
-    proxy: true,
-    name: "njs301-asm3-server",
-    secret: "matitmui",
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000,
-      sameSite: "none",
-      secure: true,
-      httpOnly: false,
-    },
-  })
-);
-app.enable("trust proxy");
+app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
